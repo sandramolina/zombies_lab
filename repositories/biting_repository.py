@@ -5,8 +5,8 @@ from models.human import *
 from models.zombie import *
 
 def save(biting):
-    sql = "INSERT INTO bitings(zombie_id, human_id) VALUES (%s, %s) RETURNING id"
-    values = [biting.zombie.id, biting.human.id]
+    sql = "INSERT INTO bitings(human_id, zombie_id) VALUES (%s, %s) RETURNING id"
+    values = [biting.human.id, biting.zombie.id]
 
     results = run_sql(sql, values)
 
@@ -50,3 +50,8 @@ def delete(id):
 def delete_all():
     sql = "DELETE FROM bitings"
     run_sql(sql)
+
+def update(biting):
+    sql = "UPDATE bitings SET (human_id, zombie_id) = (%s, %s) WHERE id = %s"
+    values = [biting.human.id, biting.zombie.id, biting.id]
+    run_sql(sql, values)
