@@ -1,8 +1,10 @@
-from unittest import result
 from db.run_sql import run_sql
 from models.biting import *
 from models.human import *
 from models.zombie import *
+
+import repositories.zombie_repository as zombie_repository
+import repositories.human_repository as human_repository
 
 def save(biting):
     sql = "INSERT INTO bitings(human_id, zombie_id) VALUES (%s, %s) RETURNING id"
@@ -20,7 +22,9 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        biting = Biting(row['human_id'], row['zombie_id'], row['id'])
+        zombie = zombie_repository.select(row['zombie_id'])
+        human = human_repository.select(row['human_id'])
+        biting = Biting(human, zombie, row['id'])
         bitings.append(biting)
     return bitings
 
