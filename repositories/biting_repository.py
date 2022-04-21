@@ -11,3 +11,14 @@ def save(biting):
 
     biting.id =results[0]['id']
     return biting
+
+def select_all():
+    bitings = []
+
+    sql = "SELECT * FROM bitings"
+    results = run_sql(sql)
+
+    for row in results:
+        biting = Biting(row['zombie_id'], row['human_id'], row['id'])
+        bitings.append(biting)
+    return bitings

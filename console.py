@@ -52,3 +52,6 @@ biting_repository.save(biting_3)
 biting_4 = Biting(human_4, zombie_2)
 biting_repository.save(biting_4)
 
+# test_biting_selectall = biting_repository.select_all()
+# print(test_biting_selectall[0].__dict__)
+
