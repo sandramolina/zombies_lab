@@ -12,6 +12,17 @@ def bitings():
     return render_template('bitings/index.html', bitings = bitings)
 
 # CREATE
+@bitings_blueprint.route("/bitings", methods=["POST"])
+def create_biting():
+    human = request.form['human_id']
+    zombie = request.form["zombie_id"]
+
+def create_zombie_type():
+    name = request.form["name"]
+    new_zombie_type = ZombieType(name)
+    zombie_type_repository.save(new_zombie_type)
+    return redirect("/zombietypes")
+
 
 # EDIT
 
