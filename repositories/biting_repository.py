@@ -34,3 +34,19 @@ def select(id):
         result = results[0]
         biting = Biting(result['human_id'], result['zombie_id'], result['id'])
     return biting
+
+
+def delete(id):
+    sql = "DELETE FROM visits WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
+
+
+def delete(id):
+    sql = "DELETE FROM bitings WHERE id = %s"
+    values = [id]
+    run_sql(sql,values)
+
+def delete_all():
+    sql = "DELETE FROM bitings"
+    run_sql(sql)
