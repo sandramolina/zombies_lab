@@ -1,16 +1,12 @@
-import pdb
-
-# from models.biting import Biting
-# import repositories.biting_repository as biting_repository
-
-from models.human import Human
+import repositories.biting_repository as biting_repository
 import repositories.human_repository as human_repository
-
-from models.zombie import Zombie
 import repositories.zombie_repository as zombie_repository
-
-from models.zombie_type import ZombieType
 import repositories.zombie_type_repository as zombie_type_repository
+
+from models.biting import Biting
+from models.human import Human
+from models.zombie import Zombie
+from models.zombie_type import ZombieType
 
 # biting_repository.delete_all()
 human_repository.delete_all()
@@ -44,16 +40,15 @@ zombie_repository.save(zombie_1)
 zombie_2 = Zombie("Pete", zombie_type_1)
 zombie_repository.save(zombie_2)
 
-# biting_1 = Biting(human_2, zombie_2)
-# biting_repository.save(biting_1)
+biting_1 = Biting(human_2, zombie_2)
+biting_repository.save(biting_1)
 
-# biting_2 = Biting(human_3, zombie_1)
-# biting_repository.save(biting_2)
+biting_2 = Biting(human_3, zombie_1)
+biting_repository.save(biting_2)
 
-# biting_3 = Biting(human_3, zombie_2)
-# biting_repository.save(biting_3)
+biting_3 = Biting(human_3, zombie_2)
+biting_repository.save(biting_3)
 
-# biting_4 = Biting(human_4, zombie_2)
-# biting_repository.save(biting_4)
+biting_4 = Biting(human_4, zombie_2)
+biting_repository.save(biting_4)
 
-pdb.set_trace()
