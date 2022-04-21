@@ -1,3 +1,4 @@
+from unittest import result
 from db.run_sql import run_sql
 from models.biting import *
 from models.human import *
@@ -19,6 +20,17 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        biting = Biting(row['zombie_id'], row['human_id'], row['id'])
+        biting = Biting(row['human_id'], row['zombie_id'], row['id'])
         bitings.append(biting)
     return bitings
+
+def select(id):
+    biting = None
+    sql = "SELECT * FROM bitings WHERE id = %s"
+    values = [id]
+    results = run_sql(sql, values)
+
+    if results:
+        result = results[0]
+        biting = Biting(result['human_id'], result['zombie_id'], result['id'])
+    return biting

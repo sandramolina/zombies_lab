@@ -55,3 +55,5 @@ biting_repository.save(biting_4)
 # test_biting_selectall = biting_repository.select_all()
 # print(test_biting_selectall[0].__dict__)
 
+# test_biting_select = biting_repository.select(2)
+# print(test_biting_select.__dict__)
