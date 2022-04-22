@@ -36,7 +36,9 @@ def select(id):
 
     if results:
         result = results[0]
-        biting = Biting(result['human_id'], result['zombie_id'], result['id'])
+        zombie = zombie_repository.select(result['zombie_id'])
+        human = human_repository.select(result('human_id'))
+        biting = Biting(human, zombie, result['id'])
     return biting
 
 
