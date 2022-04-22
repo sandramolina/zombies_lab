@@ -45,5 +45,17 @@ def edit_biting(id):
     return render_template('bitings/edit.html', bitings = bitings, biting = biting, humans = humans, zombies = zombies)
 
 # UPDATE
+#route after the submit button is clicked on
+@bitings_blueprint.route('/bitings/<id>', methods = ['POST'])
+def update_biting(id):
+    human_id = request.form['human_id']
+    zombie_id = request.form["zombie_id"]
+
+    human_object = human_repository.select(human_id)
+    zombie_object = zombie_repository.select(zombie_id)
+
+    biting_to_update = Biting(human_object, zombie_object, id)
+    biting_repository.update(biting_to_update)
+    return redirect('/bitings')
 
 # DELETE
