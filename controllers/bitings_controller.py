@@ -1,5 +1,6 @@
 from flask import Blueprint, Flask, redirect, render_template, request
 from models.biting import Biting
+from models.human import Human
 from models.zombie import Zombie
 import repositories.biting_repository as biting_repository
 import repositories.zombie_repository as zombie_repository
@@ -23,9 +24,13 @@ def add_new_biting():
 # CREATE
 @bitings_blueprint.route("/bitings", methods=["POST"])
 def create_biting():
-    human = request.form['human_id']
-    zombie = request.form["zombie_id"]
-    new_biting = Biting(human, zombie)
+    human_id = request.form['human_id']
+    zombie_id = request.form["zombie_id"]
+
+    human_object = human_repository.select(human_id)
+    zombie_object = zombie_repository.select(zombie_id)
+
+    new_biting = Biting(human_object, zombie_object)
     biting_repository.save(new_biting)
     return redirect('/bitings')
 
