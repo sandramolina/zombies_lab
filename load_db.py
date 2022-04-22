@@ -60,5 +60,5 @@ biting_repository.save(biting_4)
 
 # biting_repository.delete(2)
 
-biting_1.zombie.id = 1
-biting_repository.update(biting_1)
+# biting_1.zombie.id = 1
+# biting_repository.update(biting_1)
