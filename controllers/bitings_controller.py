@@ -14,14 +14,14 @@ def bitings():
     bitings = biting_repository.select_all()
     return render_template('bitings/index.html', bitings = bitings)
 
-# NEW
+# NEW - render the form
 @bitings_blueprint.route("/bitings/new")
 def add_new_biting():
     zombies = zombie_repository.select_all()
     humans = human_repository.select_all()
     return render_template('bitings/new.html', humans = humans, zombies = zombies)
 
-# CREATE
+# CREATE - what would happen when we save the form in the new webpage
 @bitings_blueprint.route("/bitings", methods=["POST"])
 def create_biting():
     human_id = request.form['human_id']
@@ -35,6 +35,14 @@ def create_biting():
     return redirect('/bitings')
 
 # EDIT
+#Render the edit webpage
+@bitings_blueprint.route('/bitings/<id>/edit', methods=['GET'])
+def edit_biting(id):
+    biting = biting_repository.select(id)
+    bitings = biting_repository.select_all()
+    humans = human_repository.select_all()
+    zombies = zombie_repository.select_all()
+    return render_template('bitings/edit.html', bitings = bitings, biting = biting, humans = humans, zombies = zombies)
 
 # UPDATE
 
